@@ -16,7 +16,7 @@ Begin
 	
 Select * from animals;
 
--- Species data
+-- Commit
 Begin;
 	Update animals
 	Set species = 'digimon'
@@ -62,18 +62,17 @@ Commit;
 
 Select * from animals;
 
--- Aggregate functions and Group by
+-- Aggregate, Group By
 Select count(id) from animals;
 Select count(*) as Home_owner from animals
 Where escape_attempts = 0;
 
 Select Avg(weight_kg) from animals;
 
-Select neutered, Count(*) as escape_count
+Select neutered, 
+	Max(escape_attempts) 
 From animals
-Where escape_attempts > 0
-Group by neutered
-Order by escape_count DESC;
+Group By neutered;
 
 Select species,
 	Min(weight_kg) as minimal_weight, 
