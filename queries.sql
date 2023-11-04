@@ -87,3 +87,50 @@ Where date_of_birth Between '1990-1-1' and '2000-1-1'
 Group by species;
 
 Select * from animals;
+
+
+---------------------------Join------------------------------
+
+Select * from animals;
+Select * from owners;
+Select * from species;
+
+
+Select o.full_name as owner, a.name as animal_name
+From owners o
+Join animals a On o.id = a.owner_id
+Where o.full_name = 'Melody Pond';
+
+Select a.name, s.name
+From species s
+Join animals a On s.id = a.species_id
+Where s.name = 'Pokemon';
+
+Select o.full_name as owner, a.name as their_pet
+From owners o
+Left Join animals a On o.id = a.owner_id;
+
+Select s.name as species, Count(*) as animal_count
+From species s
+Left Join animals a On s.id = a.species_id
+Group By s.name
+Order By s.name;
+
+Select o.full_name as owner, a.name as digimon_name
+From owners o
+Join animals a On o.id = a.owner_id
+Join species s On a.species_id = s.id
+Where o.full_name = 'Jennifer Orwell' And s.name = 'Digimon';
+
+SELECT o.full_name As owner, 
+       COALESCE(a.name, '0') As pet_who_loves_home
+From owners o
+Left Join animals a On o.id = a.owner_id And a.escape_attempts = 0
+Where o.full_name = 'Dean Winchester';
+
+SELECT o.full_name AS owner_name, COUNT(a.id) AS animal_count
+FROM owners o
+LEFT JOIN animals a ON o.id = a.owner_id
+GROUP BY o.full_name
+ORDER BY COUNT(a.id) DESC
+LIMIT 1;
