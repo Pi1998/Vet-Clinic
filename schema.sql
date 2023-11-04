@@ -67,3 +67,37 @@ Begin;
 	
 	Select * from animals;
 Commit;
+
+-----------Relationships----------
+
+Create Table vets(
+	id Serial Primary Key,
+	name Varchar(100),
+	age Integer,
+	date_of_graduation Date
+);
+
+Create Table specializations(
+	id Serial Primary Key,
+	vet_id Int,
+	species_id Int,
+	Constraint fk_vet
+		Foreign Key (vet_id) 
+			References vets(id),
+	Constraint fk_species
+		Foreign Key (species_id)
+			References species(id)
+);
+
+Create Table visits(
+	id Serial Primary Key,
+	animal_id Int,
+	vet_id Int,
+	visit_date Date,
+	Constraint fk_animal
+		Foreign Key (animal_id)
+			References animals(id),
+	Constraint fk_vet
+		Foreign Key (vet_id)
+			References vets(id)
+);

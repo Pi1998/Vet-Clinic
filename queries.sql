@@ -134,3 +134,69 @@ LEFT JOIN animals a ON o.id = a.owner_id
 GROUP BY o.full_name
 ORDER BY COUNT(a.id) DESC
 LIMIT 1;
+
+---------------------------------------------------
+
+Select a.name As last_animal_seen
+From vets v
+Join visits vt On v.id = vt.vet_id
+Join animals a On vt.animal_id = a.id
+Where v.name = 'William Tatcher'
+Order By vt.visit_date DESC
+Limit 1;
+
+Select Count(Distinct vt.animal_id) As animals_seen
+From vets v
+Join visits vt On v.id = vt.vet_id
+Where v.name = 'Stephanie Mendez';
+
+Select v.name As vet_name, s.name As specialty
+From vets v
+Left Join specializations sp On v.id = sp.vet_id
+Left Join species s On sp.species_id = s.id;
+
+Select a.name As animal_name
+From vets v
+Join visits vt On v.id = vt.vet_id
+Join animals a On vt.animal_id = a.id
+Where v.name = 'Stephanie Mendez'
+And vt.visit_date Between '2020-04-01' And '2020-08-30';
+
+Select a.name As animal_name, Count(vt.vet_id) As visit_count
+From visits vt
+Join animals a On vt.animal_id = a.id
+Group By a.name
+Order By visit_count DESC
+Limit 1;
+
+Select a.name As first_visit_animal
+From vets v
+Join visits vt On v.id = vt.vet_id
+Join animals a On vt.animal_id = a.id
+Where v.name = 'Maisy Smith'
+Order By vt.visit_date
+Limit 1;
+
+Select a.name As animal_name, v.name As vet_name, vt.visit_date As last_visit_date
+From visits vt
+Join animals a On vt.animal_id = a.id
+Join vets v On vt.vet_id = v.id
+Order By vt.visit_date DESC
+Limit 1;
+
+Select Count(*) As mismatched_specialties
+From visits vt
+Join animals a On vt.animal_id = a.id
+Join vets v On vt.vet_id = v.id
+Left Join specializations sp On v.id = sp.vet_id And a.species_id = sp.species_id
+Where sp.vet_id Is Null;
+
+Select a.species_id As suggested_specialty_id, s.name As suggested_specialty, Count(*) As suggested_specialty_count
+From visits v
+Join vets m On v.vet_id = m.id
+Join animals a On v.animal_id = a.id
+Join species s On a.species_id = s.id
+Where m.name = 'Maisy Smith'
+Group By a.species_id, s.name
+Order By suggested_specialty_count Desc
+Limit 1;
