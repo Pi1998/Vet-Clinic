@@ -123,7 +123,7 @@ Join species s On a.species_id = s.id
 Where o.full_name = 'Jennifer Orwell' And s.name = 'Digimon';
 
 SELECT o.full_name As owner, 
-       COALESCE(a.name, 'They all tried to escape :3') As pet_who_loves_home
+       COALESCE(a.name, '0') As pet_who_loves_home
 From owners o
 Left Join animals a On o.id = a.owner_id And a.escape_attempts = 0
 Where o.full_name = 'Dean Winchester';
