@@ -103,3 +103,14 @@ Create Table visits(
 );
 
 ---------------Performance Audit--------------------
+Begin;
+	--  Create an index on the `animal_id` column
+	CREATE INDEX idx_animal_id
+	ON visits (animal_id);
+	--  Create an index on the `vet_id` column
+	CREATE INDEX idx_vet_id
+	ON visits (vet_id);
+	--  Create an index on the `email` column
+	CREATE INDEX idx_email
+	ON owners (email);
+Commit;
