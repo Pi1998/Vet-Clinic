@@ -97,6 +97,12 @@ Clone this repository to your desired folder:
 - LinkedIn: [Shinn Thant Swam Ye](https://www.linkedin.com/in/shinn-thant-swam-ye-4171a8257/)
 
 
+👤 **Mayito Ismail**
+
+- GitHub: [@Mayito Ismail](https://github.com/ismayito)
+- X: [@IsmailMayito](https://twitter.com/IsmailMayito)
+---
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
