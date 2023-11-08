@@ -103,6 +103,10 @@ Create Table visits(
 );
 
 ---------------Performance Audit--------------------
+
+-- Add an email column to owners table
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
+
 Begin;
 	--  Create an index on the `animal_id` column
 	CREATE INDEX idx_animal_id
@@ -114,3 +118,4 @@ Begin;
 	CREATE INDEX idx_email
 	ON owners (email);
 Commit;
+
